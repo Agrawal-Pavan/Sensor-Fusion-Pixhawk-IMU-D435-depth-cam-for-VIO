@@ -1,0 +1,31 @@
+filter_node_full:
+  ros__parameters:
+    frequency: 30.0
+    two_d_mode: false
+    world_frame: odom
+    odom_frame: odom
+    base_link_frame: base_link
+    publish_tf: true
+
+    # RTAB-Map Visual Odometry
+    odom0: /rtabmap/odom
+    odom0_config: [true,  true,  true,   # X, Y, Z position
+                   true,  true,  true,   # roll, pitch, yaw
+                   false, false, false,  # Vx, Vy, Vz
+                   false, false, false,  # Vroll, Vpitch, Vyaw
+                   false, false, false]  # Ax, Ay, Az
+    odom0_queue_size: 10
+    odom0_differential: false
+    odom0_relative: false
+
+    # IMU input (roll, pitch and angular velocities only; yaw excluded to prevent compass conflicts)
+    imu0: /imu/data
+    imu0_config: [false, false, false,  # X, Y, Z
+                  true,  true,  false,  # roll, pitch only (no yaw)
+                  false, false, false,  # Vx, Vy, Vz
+                  true,  true,  true,   # angular velocity (droll, dpitch, dyaw)
+                  false, false, false]  # linear acceleration (exclude unless calibrated)
+    imu0_queue_size: 10
+    imu0_differential: false
+    imu0_relative: false
+    imu0_remove_gravitational_acceleration: true
